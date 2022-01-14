@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row w-100">
+            <div class=" mx-auto">
+                <h4>Download video from youtube</h4>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input type="text" name="hello" id="urlYtb" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="sel1">Select quality:</label>
+                        <select class="form-control" id="quality">
+                            <option value="18">360</option>
+                            <option value="135">480</option>
+                            <option value="136">720</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button id="submitBtn" type="submit" class="btn btn-primary">Download</button>
+                    </div>
+                    <p>
+                        After the folder show up, press <code>ctrl + r</code>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script>
+            let urlYtb = document.getElementById("urlYtb");
+            let submitBtn = document.getElementById("submitBtn");
+            let quality = document.getElementById("quality")
+            let formData = new FormData();
+            submitBtn.onclick = () => {
+                axios({
+                    url: "/fileasd",
+                    method: "post",
+                    data: {
+                        url: urlYtb.value,
+                        quality: quality.value
+                    }
+                })
+                submitBtn.setAttribute("disabled", true)
+            }
+        </script>
+</body>
+
+</html>
